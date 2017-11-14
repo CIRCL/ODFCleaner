@@ -25,6 +25,15 @@ Or as an library:
 
 ```python
 from odfcleaner import ODFCleaner
+from io import BytesIO
+
+in_blob = BytesIO(open('tests/dataset/ODF_text_reference_v1.odt', 'rb').read())
+out_blob = BytesIO()
+
 cleaner = ODFCleaner()
-cleaner.clean('in.odf', 'out.odf')
+cleaner.clean(in_blob, out_blob)
+out_blob.seek(0)
+
+# out_blob is a zip blob containing the cleaned ODF file
+
 ```
